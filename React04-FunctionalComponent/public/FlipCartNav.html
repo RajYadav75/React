@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flipkart-Nav</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        p {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    function CardComponent(props) {
+        return (
+            <div>
+                <img src={props.imageUrl} width="70" height="70"/>
+                <p>{props.title}</p>
+            </div>
+        );
+    }
+
+    function Appcomponent() {
+        const containerStyle = {
+            display: 'flex',
+            justifyContent: 'space-evenly',
+        }
+        return (
+            <div style={containerStyle}>
+                <CardComponent title="Kilos" imageUrl="img/Kilos.png"/>
+                <CardComponent title="Mobiles" imageUrl="img/mobiles.png"/>
+                <CardComponent title="Fashions" imageUrl="img/fashions.png"/>
+                <CardComponent title="Electronics" imageUrl="img/electronics.png"/>
+                <CardComponent title="Home & Furniture" imageUrl="img/Home Furniture.png"/>
+                <CardComponent title="Applicances" imageUrl="img/appliance.png"/>
+                <CardComponent title="Travel" imageUrl="https://rukminim2.flixcart.com/flap/80/80/image/71050627a56b4693.png?q=100"/>
+                <CardComponent title="Mobiles" imageUrl="img/mobiles.png"/>
+                <CardComponent title="Fahions" imageUrl="img/fashions.png"/>
+            </div>
+        )
+    }
+
+    ReactDOM.render(<Appcomponent/>, document.getElementById('root'));
+</script>
+</body>
+</html>

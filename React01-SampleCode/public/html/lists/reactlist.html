@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body id="root">
+<script>
+
+    var li = React.createElement("li", null, "Raj Yadav");
+    var li1 = React.createElement("li", null, "Ankita");
+    var li2 =React.createElement("li", null, "Deepak");
+    var li3 =React.createElement("li", null, "Baba");
+    var ol = React.createElement("ol", null, [li,li1,li2,li3]);
+
+    ReactDOM.render(ol,document.getElementById("root"));
+</script>
+</body>
+</html>

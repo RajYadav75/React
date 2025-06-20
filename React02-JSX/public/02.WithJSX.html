@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body id="root">
+    <script type="text/babel">
+        // var heading = React.createElement("h2", null, "Heading Element");
+        var heading = <h2>Heading Element</h2>
+        // var para = React.createElement("p",null, "My name is Raj Yadav");
+        var para = <p>My name is Raj Yadav</p>
+        // var button = React.createElement("button",null,"Submit");
+        var button = <button>Submit</button>
+
+        ReactDOM.render([heading,para,button],document.getElementById("root"));
+    </script>
+</body>
+</html>

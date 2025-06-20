@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        #header{
+            background-color: black;
+            color: white;
+            border: 2px solid yellow;
+            text-align: center;
+            height: 100px;
+        }
+        #main{
+            background-color: white;
+            color: black;
+            border: 2px solid yellow;
+            text-align: center;
+            height: 800px;
+            display: flex;
+            flex-direction: row;
+        }
+        #footer{
+            background-color: black;
+            color: white;
+            border: 2px solid yellow;
+            text-align: center;
+            height: 100px;
+        }
+        #card{
+            border: 2px solid darkred;
+            box-shadow: 2px 2px 4px darkred;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function CardComponent(props) {
+            return (
+                <div id="card">
+                    <img src={props.imgUrl} width="200" height="200"/>
+                    <h3>{props.title}</h3>
+                    <p>My name is {props.name} and I am best for every thing</p>
+                </div>
+            )
+        }
+        function Header(){
+            return(
+                <div id="header">
+                    Header   
+                </div>
+            );
+        }
+        function Main(){
+            return(
+                <div id="main">
+                    <CardComponent title="Raj Yadav" imgUrl="https://static.vecteezy.com/system/resources/thumbnails/024/354/252/small/businessman-isolated-illustration-ai-generative-free-photo.jpg"/>
+                    <CardComponent title="Deepak Kumar" imgUrl="https://static.vecteezy.com/system/resources/previews/035/314/037/non_2x/ai-generated-professional-man-in-suit-standing-confidently-in-office-generative-ai-free-photo.jpg"/>
+                    <CardComponent title="Ankita Tiwari" imgUrl="https://i.pinimg.com/736x/77/71/68/7771683223d86b237a3304d6f32828b9.jpg"/>
+                    <CardComponent title="Ambrikesh" imgUrl="https://img.freepik.com/premium-photo/corporate-portrait-proud-with-business-man-office-start-professional-career-as-intern-company-confident-suit-with-smile-formal-employee-workplace-administration_590464-381909.jpg?semt=ais_hybrid&w=740"/>
+                    <CardComponent title="Dalal" imgUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcfo6Y5vL5SIGjjGAzu4NxFgTc2W6GbR_9g&s"/>
+                </div>
+            );
+        }
+        function Footer(){
+            return(
+                <div id="footer">
+                    Footer   
+                </div>
+            );
+        }
+        function AppComponent(){
+            return(
+               <div>
+                   <Header/>
+                   <Main/>
+                   <Footer/>
+               </div>
+            );
+        }
+
+        ReactDOM.render(<AppComponent/>, document.getElementById('root'));
+    </script>
+</body>
+</html>
