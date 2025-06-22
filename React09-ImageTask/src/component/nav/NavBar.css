@@ -1,0 +1,16 @@
+#mainNavBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid yellow;
+}
+#firstNavBar{
+    width: 500px;
+}
+#secondNavBar{
+    margin-left: 600px;
+}
+a{
+    margin: 10px;
+}
