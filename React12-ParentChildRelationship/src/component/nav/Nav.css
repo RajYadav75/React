@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+}
+#mainNav{
+    display: flex;
+    height: 70px;
+    /*flex-direction: row;*/
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
+    border: 1px solid yellow;
+    background-color: black;
+}
+#firstNav{
+    width: 40%;
+    color: white;
+}
+#secondNav{
+    width: 60%;
+}
+#secondNav a{
+    color: white;
+    text-decoration: none;
+    margin-right: 50px;
+}
+
+a:hover{
+    text-decoration: none;
+    background-color: yellow;
+    color: red;
+}
+.flexcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
