@@ -1,0 +1,16 @@
+useCallback()
+- It can cache any function in memory.
+- Caching function is required to use it repeatedly across multiple requests.
+- Caching will save round trip.
+
+Syntax:
+	useCallback( (data)=>{ }, [ dependencies ])
+
+useMemo()
+- It can cache data in memory.
+- It saves round trip if same data is required across requests.
+
+Syntax:
+	const data =  useMemo( ()=> { }, [dependency])
+
+

@@ -1,0 +1,170 @@
+			   React Material UI
+- It is a component library built for React. 
+- It provides free and premium component of application.
+- MUI [Material UI] of react provides various component
+	- MUI Core
+	- MUI X
+	- Templates
+	- Toolpad etc.
+- MUI Core is a free component library.
+
+Setup MUI for project:
+1. Install the following libraries
+
+	> npm install @mui/material @emotion/react @emotion/styled
+
+2. MUI is new for React 18, which is a complete re-write with adon like @emotion.
+    
+3. Import the controlled components to use in application.
+
+    import { TextField, Button }  from @mui/material ;
+
+4. Implement with properties
+
+	<Button  variant="contained"  color="error">  Login </Button>
+	<TextField type="password" variant="standard" label="Your Password" />
+
+Ex:
+user-login.jsx
+
+import { Button, Divider, TextField } from "@mui/material"
+import { useState } from "react"
+
+export function UserLogin(){
+
+    const [username, setUserName] = useState('');
+
+    function handleNameChange(e){
+        setUserName(e.target.value);
+    }
+    
+    return(
+        <div className="container-fluid">
+           <h2>Bootstrap Login</h2>
+           <div className="w-25">
+             <div>
+                <label className="form-label">User Name</label>
+                <div>
+                    <input type="text" className="form-control" />
+                </div>
+             </div>
+             <div className="my-2">
+                <label className="form-label">Password</label>
+                <div>
+                    <input type="password" className="form-control" />
+                </div>
+             </div>
+             <div>
+                <button className="btn btn-warning w-100">Login</button>
+             </div>
+           </div>
+           <h2>MUI Login</h2>
+           <div className="w-25">
+              <div>
+                  <TextField className="w-100" onChange={handleNameChange} variant="standard" placeholder="Your Name" label="User Name" />
+              </div>
+              <div className="my-4">
+                  <TextField className="w-100" type="password" variant="standard" placeholder="Password" label="Password" />
+              </div>
+              <div className="my-4">
+                <Button variant="contained" color="error" className="w-100">Login</Button>
+              </div>
+           </div>
+           <h3>Hello ! {username}</h3>
+        </div>
+    )
+}
+
+			           Build & Deploy
+- Build is the process of 
+	a) Verifying errors in your code
+	b) Minifying the resources 
+	c) Optimizing the code
+	d) Making it ready for production.
+- It is always recommended to automate the build process instead of manual.
+- Go to your project , which is in development evironment.
+- Run the command
+
+	> npm run build 
+
+- The new build folder comprises of 
+	> static 
+	> index.html
+- Static folder comprises of all resources  like
+	> JS
+	> CSS
+	> Images 
+
+			            Deploy
+- Deploy is the process of hosting application on server.
+- So that is live.
+- You can deploy on local servers 
+	a) IIS
+	b) Tomcat
+	c) WAMP etc..
+- You can deploy on cloud servers
+	a) AWS
+	b) AZURE
+	c) Nelify
+	d) GIT Hub Pages
+	e) Firebase etc..
+
+			       Deploying on Firebase
+
+1. Install firebase tools on your device
+	
+	C:\> npm install  -g  firebase/tools  
+
+2. It gets the firebase CLI 
+
+3. Login into google firebase account
+
+	https://firebase.com/
+
+4. Go to "console" and create a new project
+
+	Project Name :  react-todo-nareshit
+	Account	      :  default-account
+
+5. Go to your project which you made ready for production
+
+6. Run the following commands
+
+	> firebase login
+	> firebase init 
+
+	? Which Firebase features do you want to set up  : hosting
+	? folder name [production] : build
+	? rewrite index.html :  no
+	? want to create or use existing project?  use existing project
+	? project name  "react-todo-nareshit"
+
+	> firebase deploy
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

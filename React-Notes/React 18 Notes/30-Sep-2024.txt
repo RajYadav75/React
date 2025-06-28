@@ -1,0 +1,305 @@
+Setup Environment for TypeScript
+
+1. Install typescript on your PC
+
+	C:\> npm install -g  typescript
+
+2. Check the version
+
+	C:\> tsc   -v		[typescript trans compiler]
+
+3. Create a new folder for typescript project
+
+	D:\typescript-project
+
+4. Open in Visual Studio code
+
+5. Run the command 
+
+	> tsc  -init 			 
+
+   [ It generates tsconfig.json file, which is a typescript configuration file ]
+
+6. Typescript programs are written in  ".ts" file
+
+7. Typescript programs are translated and converted into JS by using typescript compiler
+
+	> tsc   index.ts	=> It generates index.js
+
+8.  Run JavaScript file using node compiler
+
+	> node index.js
+
+			       TypeScript Language
+
+- Variables Declaration keywords are same
+	var, let, const
+- Typescript variable requires data type specification
+	
+	var  variableName:dataType = value;
+
+- Data Types are all JS types.
+	
+	var Name:string;
+	var Price:number;
+	var Stock:boolean;
+
+- TypeScript supports union of types
+
+	var  Name:string|null ;
+
+- If data type is not defined then the default is "any" type.
+
+	var Name;		// any
+
+- Typescript supports type inference, it can set data type based on the value initialized.
+
+	var Name = "TV";	// string
+	Name = 4500;	// invalid
+
+	var Name;		// any
+	Name = 10;	// valid
+	Name = "TV";	// valid
+
+- All primitive types are same as in JavaScript.
+- All manipulations of string, number are same.
+
+
+			          TypeScript Array
+- Array can be defined for same data type collection or various types.
+
+Syntax:
+	var categories:string[]  = [ ]  or new Array();
+	var values:any[] = [ ];
+
+- Array methods are same as in JS.
+- Array can have union of types, but not for initialization only for assignment.
+
+Syntax:	
+	var values:string[] | number[]  = [ ];
+
+	Initializaiton only string or number.
+	Assignment both string and number.
+	
+			
+			 Object Type
+- It is collections of key and value reference.
+- Key is string and value is any type.
+- You can set restriction for value type.
+
+Syntax:
+     var  product:{Name:string, Price:number} = {  }
+
+Ex:
+var product:{Name:string, Price:number, Rating:{rate:number, count:number}, Cities:string[]} = {
+
+    Name: "TV",
+    Price: 45000,
+    Rating: {rate:3.2, count:5000},
+    Cities: ["Delhi", "Hyd"]
+
+}
+console.log(`Name=${product.Name}`)
+
+- Every key defined for object is mandatory to implement.
+- You can't ignore or add a new key.
+- You have to define exactly the same keys configured for object.
+- You can configure optional keys [nullable keys] by using "?". [Null reference character]
+
+Syntax:
+   var product: {Name:string, Price?:number} = {  }	// price is optional
+
+Syntax: Array of objects   [ { }, { } ]
+
+   var products:{Name:string, Price:number}[] = [ ];
+
+Ex:
+var products:{Name:string, Price:number}[] = [
+    {Name: "TV", Price: 5000.44},
+    {Name: "Mobile", Price: 24000}
+]
+products.map(product=> {
+    console.log(product.Name);
+})
+
+			            Map Type
+- JavaScript map uses key as any type and value as any type.
+- TS can restrict key and value type.
+
+Syntax:
+     var data:Map<KeyType, ValueType> = new Map();
+     data.set()
+     data.get()
+
+Ex:
+      var data:Map<number, string> = new Map();
+      data.set(1, "TV");
+
+- All manipulations are same as in JS.
+
+			            Date Type
+- Typescript date type requires  "Date" interface.
+
+Syntax:
+          var now:Date = new Date();
+
+- All date manipulations are same.
+	
+			    Regular expression Type
+- TypeScript uses "RegExp" as regular expression type.
+- Expression is defined in " /   / ".
+
+
+Syntax:
+	var pattern:RegExp = /\d{10}/;
+
+- Regular expression is verified by using "match()".
+
+Ex:
+
+var pattern:RegExp  = /\+91\d{10}/;
+var mobile:string = "+919876543210";
+
+if(mobile.match(pattern)){
+    console.log("Verified");
+} else {
+    console.log("Invalid");
+}
+- Operators are same
+- Statements are same
+- Function have Type Specification
+
+
+			Type Script Functions
+- Functions in typescript are configure with return type of void as type.
+
+Syntax:
+	function Name():void
+	{
+	}
+
+	function Name():number 
+	{
+	   return  10;
+	}
+
+- Function parameter also defines the type.
+
+Syntax:
+	function Name(param:type, param:type): type
+	{
+	}
+
+Ex:
+
+function Details(id:number, Name:string, price?:number) : void{
+    console.log(`Id=${id}\nName=${Name}\nPrice=${price}`);
+}
+
+function Addition(a:number, b:number):number {
+    return a + b;
+}
+
+Addition(10, 30);
+Details(1, "TV");
+
+			         Interfaces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+

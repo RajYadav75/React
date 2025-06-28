@@ -1,0 +1,250 @@
+TypeScript
+- Variables
+- Data Types
+- Union of Types
+- Operators
+- Statements
+- Functions
+- Array
+- Object
+- Map
+- Array of Objects
+
+			        TypeScript OOP
+1. Interface
+- Interface defines rules for component.
+- Object or Class can implement interface. [rules]
+- You can reuse or extend rules.
+
+Syntax:
+  interface  Name
+  {
+     property:dataType;
+     method():dataType|void;
+  }
+
+- You can define optional rules
+	{
+	property?:dataType
+	}
+
+- You can have readonly rules
+
+	{
+	 readonly  property:dataType;
+	}
+
+- Readonly will not allow to assign a value after initialization.
+
+Ex:
+interface IProduct
+{
+    Name:string;
+    readonly Price:number;
+    Qty:number;
+    Total():number;
+    Print():void;
+}
+interface ICategory extends IProduct
+{
+    CategoryName:string;
+}
+
+
+var product:ICategory= {
+    Name : "TV",
+    Price: 20000,
+    Qty: 2,
+    CategoryName: "Electronics",
+    Total: function(){
+        return this.Qty * this.Price;
+    },
+    Print: function(){
+        console.log(`Name=${this.Name}\nPrice=${this.Price}\nQty=${this.Qty}\nTotal=${this.Total()}\nCategory=${this.CategoryName}`);
+    }
+}
+product.Qty = 4;
+product.Price = 56000;		// invalid   price is read-only
+
+product.Print();
+
+			           TypeScript Classes
+- Class Declaration
+- Class Expression
+- Class Members
+
+Static and NonStatic members:
+- Static uses continous memory.
+- Non static uses discreet memory.
+- Static members are accessed by using class name.
+- Non static members are accessed by using "this" keyword within class and 
+  by using instance of class outside class.
+
+Ex:
+
+class Demo
+{
+    static s=0;
+    n = 0;
+    constructor(){
+        Demo.s = Demo.s + 1;
+        this.n = this.n + 1;
+    }
+    Print(){
+        console.count(`s=${Demo.s} n=${this.n}`);
+    }
+}
+let obj1 = new Demo();
+obj1.Print();
+
+let obj2 = new Demo();
+obj2.Print();
+
+let obj3 = new Demo();
+obj3.Print();
+
+Access Modifers:
+1. public
+2. private
+3. protected 
+
+- public is accessible from any location and any object
+- private is accessible only with in class.
+- protected is accessible with in class and outside class. 
+  Outside it is accessible only within derived class and by using derived class reference.
+
+Ex:
+
+class Product
+{
+    public Name:string  = "Samsung TV";
+    private Price:number = 34000.44;
+    protected Stock:boolean = true;
+}
+class Derived extends Product
+{
+     Print(){
+        let obj = new Derived();
+        obj.Stock; // protected
+     }
+}
+
+
+Create a new React project with Typescript as language:
+
+   >npx  create-react-app    app-name --template  typescript
+
+- Your component files will have extenstion  ".tsx"
+- Your index, classes and interfaces will have ".ts" 
+- Complete file system is same as in Javascript.
+- All hooks are same.
+- useState() hook is now generic type in typescript.
+
+Syntax:
+  const [categories, setCategories] = useState<string[]>([" "]);
+  const [products, setProducts] = useState<{Name:string, Price:number}[]>([ { }, { } ]);
+  const [products, setProducts] = useState<IProduct[]>([{}, {}]);
+
+	interface IProduct 
+	{
+	  Name:string;
+	  Price:number;
+	}
+
+Ex:
+1. contracts/Iproduct.ts
+
+export interface IProduct
+{
+    id:number;
+    title:string;
+    description:string;
+    image:string;
+    price:number;
+    rating: {rate:number, count:number},
+    category:string;
+}
+
+2. data-demo.tsx
+
+import { useEffect, useState } from "react";
+import { IProduct } from "../contracts/IProduct";
+import axios from "axios";
+
+export function DataDemo(){
+
+    const [categories, setCategories] = useState<string[]>([]);
+    const [products, setProducts] = useState<IProduct[]>();
+
+    function LoadCategories(){
+        axios.get('https://fakestoreapi.com/products/categories')
+        .then(response=>{
+             setCategories(response.data);
+        })
+    }
+
+    function LoadProducts(){
+        axios.get('https://fakestoreapi.com/products')
+        .then(response=>{
+             setProducts(response.data);
+        })
+    }
+
+    useEffect(()=>{
+
+        LoadCategories();
+        LoadProducts();
+        
+
+    },[])
+
+    return(
+        <div>
+            <select>
+                {
+                    categories.map(category => <option key={category}>{category}</option>)
+                }
+            </select>
+            <h3>Products</h3>
+            <ol>
+                {
+                    products?.map(product=> <li key={product.id}>{product.title}</li>)
+                }
+            </ol>
+        </div>
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

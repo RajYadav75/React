@@ -1,0 +1,279 @@
+		             Video Library Project
+
+Database Models 
+
+1. Admin Module
+	Collection		: admin
+	Fields		: UserId		[string] [PK]	
+			  Password	[string]
+
+2. User Module
+	Collection		: users
+	Fields		: UserId		[string] [PK]
+			  UserName	[string]
+			  Password	[string]
+			  Mobile		[string]
+			  Email		[string]
+
+3. Videos Module
+	Collection		: videos
+	Fields		: VideoId		[number] [PK]
+			  Title		[string]
+			  Url		[string]
+			  Likes		[number]
+			  Dislikes		[number]
+			  Views		[number]
+			  Category	Id	[number] [FK]
+
+	Collection		: categories
+	Fields		: CategoryId	[number] [PK]
+			  CategoryName	[string] 
+
+API Routes:
+
+GET	/admin			Returns admin user details 
+
+GET	/videos			Returns all videos 
+
+GET	/categories		Returns all categories
+
+GET	/video/1			Returns specific video by id
+
+GET	/videos/java		Returns specific category videos
+
+GET	/users			Returns all users
+
+POST	/register-user		Adds new user into database
+
+POST	/add-video		Adds new video 
+
+PUT	/edit-video/1		Edits specified video and updates
+
+DELETE	/delete-video/1		Removes specified video
+
+
+Server App:
+1. Create  new folder  server-app
+
+2. Open in VS Code
+
+3. Install Following libraries
+
+   	> npm install  express   mongodb   cors  --save
+
+
+4. Add a new  JS file  "api.js"
+
+
+var mongoClient = require("mongodb").MongoClient;
+var express = require("express");
+var cors = require("cors");
+
+var conStr = "mongodb://127.0.0.1:27017";
+
+var app = express();
+
+app.use(cors());
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
+
+// Routes
+
+app.get("/admin",(req, res)=>{
+
+    mongoClient.connect(conStr).then(clientObj =>{
+
+        var database = clientObj.db("videolibrary");
+        database.collection("admin").find({}).toArray().then(documents=>{
+
+            res.send(documents);
+            res.end();
+
+        });
+    });
+});
+
+
+app.get("/videos",(req, res)=>{
+
+    mongoClient.connect(conStr).then(clientObj =>{
+
+        var database = clientObj.db("videolibrary");
+        database.collection("videos").find({}).toArray().then(documents=>{
+
+            res.send(documents);
+            res.end();
+
+        });
+    });
+});
+
+app.get("/categories",(req, res)=>{
+
+    mongoClient.connect(conStr).then(clientObj =>{
+
+        var database = clientObj.db("videolibrary");
+        database.collection("categories").find({}).toArray().then(documents=>{
+
+            res.send(documents);
+            res.end();
+
+        });
+    });
+});
+
+app.get("/users",(req, res)=>{
+
+    mongoClient.connect(conStr).then(clientObj =>{
+
+        var database = clientObj.db("videolibrary");
+        database.collection("users").find({}).toArray().then(documents=>{
+
+            res.send(documents);
+            res.end();
+
+        });
+    });
+});
+
+app.get("/video/:id",(req, res)=>{
+
+    mongoClient.connect(conStr).then(clientObj =>{
+
+        var database = clientObj.db("videolibrary");
+        database.collection("videos").find({VideoId:parseInt(req.params.id)}).toArray().then(documents=>{
+
+            res.send(documents);
+            res.end();
+
+        });
+    });
+});
+
+
+app.get("/videos/:categoryid",(req, res)=>{
+
+    mongoClient.connect(conStr).then(clientObj =>{
+
+        var database = clientObj.db("videolibrary");
+        database.collection("videos").find({CategoryId:parseInt(req.params.categoryid)}).toArray().then(documents=>{
+
+            res.send(documents);
+            res.end();
+
+        });
+    });
+});
+
+app.post("/register-user",(req, res)=>{
+
+    var user = {
+        UserId: req.body.UserId,
+        UserName: req.body.UserName,
+        Password: req.body.Password,
+        Mobile: req.body.Mobile,
+        Email: req.body.Email
+    }
+
+    mongoClient.connect(conStr).then(clientObj=>{
+
+        var database = clientObj.db("videolibrary");
+
+        database.collection("users").insertOne(user).then(()=>{
+
+                console.log('User Registered');
+                res.end();
+        });
+    });
+});
+
+
+app.post("/add-video",(req, res)=>{
+
+    var video = {
+        VideoId: parseInt(req.body.VideoId),
+        Title: req.body.Title,
+        Url: req.body.Url,
+        Likes: parseInt(req.body.Likes),
+        Dislikes: parseInt(req.body.Dislikes),
+        Views: parseInt(req.body.Views),
+        CategoryId: parseInt(req.body.CategoryId)
+    }
+
+    mongoClient.connect(conStr).then(clientObj=>{
+
+        var database = clientObj.db("videolibrary");
+
+        database.collection("videos").insertOne(video).then(()=>{
+
+                console.log('Video Added');
+                res.end();
+        });
+    });
+});
+
+
+
+app.put("/edit-video/:id",(req, res)=>{
+
+    var video = {
+        VideoId: parseInt(req.body.VideoId),
+        Title: req.body.Title,
+        Url: req.body.Url,
+        Likes: parseInt(req.body.Likes),
+        Dislikes: parseInt(req.body.Dislikes),
+        Views: parseInt(req.body.Views),
+        CategoryId: parseInt(req.body.CategoryId)
+    }
+
+    mongoClient.connect(conStr).then(clientObj=>{
+
+        var database = clientObj.db("videolibrary");
+
+        database.collection("videos").updateOne({VideoId:parseInt(req.params.id)},{$set:video}).then(()=>{
+
+                console.log('Video Updated');
+                res.end();
+        });
+    });
+});
+
+app.delete("/delete-video/:id",(req, res)=>{
+
+    
+    mongoClient.connect(conStr).then(clientObj=>{
+
+        var database = clientObj.db("videolibrary");
+
+        database.collection("videos").deleteOne({VideoId:parseInt(req.params.id)}).then(()=>{
+
+                console.log('Video Deleted');
+                res.end();
+        });
+    });
+});
+
+app.listen(5000);
+console.log(`Server Started http://127.0.0.1:5000`);
+
+Front End - React
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

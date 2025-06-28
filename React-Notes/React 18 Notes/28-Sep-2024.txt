@@ -1,0 +1,139 @@
+			          Testing React Application
+
+- Testing is the process of verifying AS-IS and TO-BE.
+- AS-IS refers to developers design.
+- TO-BE refers to client requirements.
+
+	AS-IS === TO-BE		=> Test Pass
+	AS-IS !== TO-BE		=> Test Fail
+
+- React is a JavaScript library, which uses "JEST" as testing framework.
+- JEST provides unit-testing methods used to test every JavaScript function and Class.
+- You can test React hooks and components by using JEST.
+- Testing every component includes 3 phases
+
+	1. Arrange
+	2. Act
+	3. Assert
+
+- Arrange is the process of setting up the environment for testing a component.
+- Act is the process of defining the parameters for testing.
+- Assert is the process of exeucting the test and monitoring the results.
+- JEST provides various methods for configuring and testing
+
+	test()
+	screen
+	render()
+	expect()
+	toBe..()
+Ex:
+Client Requirements for Login:
+- Login screen must have a title "Customer Login".
+- Login screen must have a link [anchor] with text "Recover Password".
+- Recover Password link must navigate to "/recover-password" route path.
+
+1. Add a new test file for user-login component
+
+	user-login.test.js   (or)  user-login.spec.js
+
+2. Import the component that you want to test.
+
+	import  { UserLogin }  from  "./user-login";
+
+3. Import the basic test methods
+	a) render		import your component
+	b) screen		can read every UI element from component
+
+4. Write a test case for every test.
+
+Syntax:
+	test( "Case Name", ()=>{
+	
+	          render(<Component />
+
+	          expect(element_to_test).toBe..();
+
+	})
+
+  - JEST uses "data-testid" to setup reference for any UI element, so that we can access and test 
+    the element.
+
+	<h2  data-testid="title"> 
+	<img data-testid="company-logo">
+	<a  data-testid="recover-password">
+
+5. Run the test
+
+	>npm test
+
+Ex:
+import { UserLogin } from "./user-login";
+import { screen, render } from "@testing-library/react";
+
+test("Title Test", ()=>{
+
+     render(<UserLogin />);
+
+     var title = screen.getByTestId("title");
+     expect(title).toHaveTextContent("Customer Login");
+
+});
+
+test("Recover Password Link Test", ()=>{
+
+      render(<UserLogin />);
+
+      var link = screen.getByText(/Recover Password/);
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute("href", "/recover-password");
+
+})
+			          React with TypeScript
+			         ------------------------------
+
+FAQ: What are the issues with JavaScript?
+- It is not strongly typed.
+- It is not implicitly strictly typed.
+- It is not an OOP language.
+- Extensibility issues.
+
+TypeScript 
+- It is an alternative for JavaScript.
+- Anders Hejlberg of Microsoft introduced typescript language.  [ C# ] 
+- It is strongly typed and strictly typed.
+- It is an OOP language.
+- It is built in typescript.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

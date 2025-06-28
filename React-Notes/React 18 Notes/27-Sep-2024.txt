@@ -1,0 +1,82 @@
+			                 Redux 
+- It is a JavaScript library for managing predictable global state.
+- Global state is at application level, which you can access use across components.
+- Redux provides a toolkit to setup and configure global state.
+- It is predictable, debggable, extensible and secured.
+
+1. Install Redux toolkit and react support for project
+
+	> npm install  @reduxjs/toolkit   react-redux   --save
+
+2. Add a slicer to your project
+ - Slicer is provided by redux toolkit 
+ - You can use "createSlice" to create a slicer.
+ - Typically slicer contains initialState and actions performed.
+ - initialState configures the data to store
+ - slicer creates a slice with actions used by reducer.
+ - slicer configure the payload [data] to save in the store.
+
+Syntax:
+
+		video-slicer.jsx
+
+     import  { createSlice  } from  "@reduxjs/toolkit";
+   
+     const  initialState = {
+                   videos : [ ],
+	  videosCount: 0
+      }
+
+     const videoSlice = createSlice({ 
+
+	name: "video",
+	initialState,
+	reducers : {
+	     addToSaveList : (state, action) {
+	           state.videos.push[action.payload];
+	           state.videosCount = state.videos.length;
+	     }
+	}
+     })
+     
+    // export the video slide and actions so that you can use in another component.
+  
+    export const  { addToSaveList } = videoSlice.actions;
+    export default videoSlice.reducer;
+
+3. Add a new store 
+	           "store.jsx"
+   - Store imports the slicer and reducer
+   - It stores the data and send using state.
+   - It identifies the actions performed and updates data into store.
+   - Create store by using "configureStore" from redux tool kit.
+  
+Syntax:
+       import  { configureStore }  from  "@reduxjs/toolkit";
+
+       export default configureStore({
+
+               reducer : {
+                     store: videoSlicer
+               }
+         })
+
+4. Go to "index.js"
+- Import store
+- Import provider from redux library
+
+      <Provider store = { store } >
+                <App />
+      </Provider>
+
+5. Go to your component to access and update store
+
+	store.getState().store; 	// { videos, videoLength }
+ 
+    Store is updated by using  useDispatch() hook or react-redux library
+
+
+Note: Install "Redux Dev Tools" for your browser
+
+
+
