@@ -1,0 +1,17 @@
+.counter {
+    padding: 50px;
+    box-shadow: 20px 20px 30px black;
+    width: 300px;
+    margin: 50px auto;
+}
+.counter button {
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px darkred;
+}
+.counter button:hover {
+    box-shadow: 0 0 10px yellow;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
